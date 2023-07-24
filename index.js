@@ -34,7 +34,8 @@ app.post('/', async (req, res) => {
     const htmltemp = JSON.parse(JSON.stringify(postData));
     const html = htmltemp.myhtml;
     // console.log(html);
-    await page.setContent(html, { waitUntil: 'domcontentloaded' });
+    await page.setContent(html, { waitUntil: 'networkidle0' });
+    // await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
     // Print the page as PDF
     const pdfBuffer = await page.pdf({
