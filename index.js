@@ -22,18 +22,10 @@ app.post('/', async (req, res) => {
     // Navigate to the route you want to print as PDF
     // await page.goto('https://poolvilla-laravel.porrapat.com/villas/reservations/print/9b6588bf-d8db-4621-a61d-df72f7d2ede1'); // Replace with your actual route
 
-    // Wait for any asynchronous content to load (optional, if needed)
-    // await page.waitForTimeout(3000);
-
-    // await page.setContent('<h1>Hello</h1>', { waitUntil: 'domcontentloaded' });
     const postData = req.body;
     
-    // Process the data or do whatever you need with it
-    // console.log('Received POST data:', JSON.stringify(postData));
-
     const htmltemp = JSON.parse(JSON.stringify(postData));
     const html = htmltemp.myhtml;
-    // console.log(html);
     await page.setContent(html, { waitUntil: 'networkidle0' });
     // await page.setContent(html, { waitUntil: 'domcontentloaded' });
 
@@ -43,7 +35,7 @@ app.post('/', async (req, res) => {
       printBackground: true, // Include background colors and images
       displayHeaderFooter: false,
       margin: {
-        top: '10px',
+        top: '0px',
         bottom: '0px',
         left: '0px',
         right: '0px',
